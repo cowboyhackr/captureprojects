@@ -1,0 +1,44 @@
+#! /bin/sh
+# /etc/init.d/motioncapture4
+
+### BEGIN INIT INFO
+# Provides:          motioncapture4
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Simple script to start a program at boot
+# Description:       A simple script which will start / stop a program a boot /$
+### END INIT INFO
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/local/bin/projects/MotionSnap/motionSoundAction.py
+NAME=motioncapture
+DESC="Motion Capture"
+
+test -x $DAEMON || exit 0
+
+. /lib/lsb/init-functions
+
+set -e
+
+# Carry out specific functions when asked to by the system
+case "$1" in
+     start)
+        echo "********************************************************MOTION SOUND ACTION v4*****************************************"
+        sleep 10s
+        start-stop-daemon --start --quiet --pidfile /var/run/$NAME.pid --background --make-pidfile --exec $DAEMON
+        echo "$NAME."
+	echo "MOTION CAPTURE STARTED"
+	;;
+      stop)
+        ;;
+      *)
+        echo "Bye!"
+        sleep 10s
+        killall python
+        exit 1
+        ;;
+esac
+
+exit 0
