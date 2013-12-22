@@ -10,6 +10,10 @@ bootscripts are deployed in us /etc/init.d/
 		3) ensure that python script and bootscript have the correct permissions. (chmod)
 		3) to remove bootscript from list:  update-rc.d -f {nameofscript} remove
 		
+		Testing from command line is possible.  http://www.raspberrypi.org/phpBB3/viewtopic.php?t=62579&p=464520
+		1) sudo sh -x /etc/init.d/Daemon start (x is optional)
+		2) sudo /etc/init.d/MoonoDaemon start
+		
 project 1-
 
 		1) MotionCapture - captures photos with sensor
