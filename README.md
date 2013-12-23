@@ -14,6 +14,32 @@ bootscripts are deployed in us /etc/init.d/
 		1) sudo sh -x /etc/init.d/Daemon start (x is optional)
 		2) sudo /etc/init.d/MoonoDaemon start
 		
+		* followed this shell example in the end.  http://www.pietervanos.net/knowledge/start-python-script-from-init-d/
+		Example:   
+		
+
+			 #! /bin/sh
+			# /etc/init.d/example
+			 
+			case "$1" in
+			  start)
+			    echo "Starting example"
+			    # run application you want to start
+			    python /usr/local/sbin/example.py &
+			    ;;
+			  stop)
+			    echo "Stopping example"
+			    # kill application you want to stop
+			    killall python
+			    ;;
+			  *)
+			    echo "Usage: /etc/init.d/example{start|stop}"
+			    exit 1
+			    ;;
+			esac
+			 
+			exit 0
+		
 project 1-
 
 		1) MotionCapture - captures photos with sensor
